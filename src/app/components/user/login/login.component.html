@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div *ngIf="loading" class="d-flex justify-content-center mt-10">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center title">Login</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="user" class="form-control form-control-lg" placeholder="Correo">
+                            <span *ngIf="loginForm.get('user')?.hasError('required') && loginForm.get('user')?.touched" class="text-danger">
+                                El correo es requerido
+                            </span>
+                            <span *ngIf="loginForm.get('user')?.hasError('email') && loginForm.get('user')?.touched" class="text-danger">
+                                Correo invalido
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Contraseña">
+                            <span *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="text-danger">
+                                La contraseña es requerida
+                            </span>
+                        </div>
+                        <button class="btn btn-secondary btn-lg" routerLink="/">Volver</button>
+                        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-lg float-right">Aceptar</button>
+                    </form>
+                    <br>
+                    <div class="text-center">
+                        <a routerLink="/user/register">Registrarse</a>
+                        <br>
+                        <a routerLink="/user/password-recover">Recuperar contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

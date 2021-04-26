@@ -1,0 +1,10 @@
+.fas {
+    cursor: pointer;
+    font-size: 25px;
+    margin: 0 7px;
+}
+
+
+.fa-trash {
+    color: #a71c28;
+}

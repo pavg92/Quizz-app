@@ -1,0 +1,25 @@
+<div *ngIf="loading" class="content">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="d-flex justify-content-center mt-3">
+        <h1 class="title countTitle">{{ getSeconds() }}</h1>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-8 offset-2">
+            <div class="text-center">
+                <h3 class="title">{{ getTitle() }}</h3>
+                <div class="col-lg-8 offset-lg-2">
+                    <ul class="list-group mt-3">
+                        <li *ngFor="let answer of quizz.listQuestion[indexQ].listAnswer; let i = index" 
+                        class="title list-group-item animate__animated animate__fadeIn" (click)="answerSelect(answer,i)"
+                        [ngClass]="addClassSelect(answer)">
+                            {{ answer.title }}
+                        </li>
+                    </ul>
+                    <button (click)="setAnswer()" [disabled]="answerPart == null" class="btn btn-prin btn-acep mt-3">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div *ngIf="loading" class="content">
+    <app-spinner></app-spinner>
+</div>
+
+<div class="container mt-5">
+    <div class="text-center animate__animated animate__backInDown">
+        <h1 class="title">RESUMEN</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <h3 class="title">Nombre: {{ quizzPart?.namePart }}</h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3 class="title">PUNTOS: {{ quizzPart?.totalPoints }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-4">
+                <div class="card text-white bg-dark">
+                    <div class="card-body">
+                        <h6 class="title">CANT. PREG.: {{ quizzPart?.questionCount }}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h6 class="title">CORRECTAS: {{ quizzPart?.correctAnswers }}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        <h6 class="title">INCORRECTAS: {{ quizzPart?.wrongAnswers }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let question of quizzPart?.listAnswer" class="row mt-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="title">{{ question.title }}</h3>
+                        <ul class="list-group">
+                            <li *ngFor="let answer of question.listAnswer; let i =  index" class="title list-group-item"
+                            [ngClass]="{'color text-white bg-success': answer.isCorrect && i === question.indexAnswerSelect,
+                                        'text-white bg-danger': !answer.isCorrect && i === question.indexAnswerSelect}">
+                                {{ answer.title }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 mb-3">
+            <div class="col-lg-6 offset-lg-3">
+                <button (click)="back()" style="width: 100%; font-size: 28px;" class="btn-prin">VOLVER</button>
+            </div>
+        </div>
+    </div>
+</div>

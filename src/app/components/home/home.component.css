@@ -1,0 +1,29 @@
+.input-enter {
+    font-family: 'Montserrat', sans-serif;
+    width: 195px;
+    text-align: center;
+    height: 3.125rem;
+    font-size: 1.25rem;
+}
+
+.btn-enter {
+    width: 195px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.link {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+.text {
+    color: white;
+}

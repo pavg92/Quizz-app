@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div *ngIf="loading" class="d-flex justify-content-center mt-10">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center title">Registro</h2>
+                    <form [formGroup]="registerForm" (ngSubmit)="register()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="user" class="form-control form-control-lg" placeholder="Correo">
+                            <span *ngIf="registerForm.get('user')?.hasError('required') && registerForm.get('user')?.touched" class="text-danger">
+                                El correo es requerido
+                            </span>
+                            <span *ngIf="registerForm.get('user')?.hasError('email') && registerForm.get('user')?.touched" class="text-danger">
+                                Correo invalido
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Contraseña">
+                            <span *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched" class="text-danger">
+                                La contraseña es requerida
+                            </span>
+                            <span *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched" class="text-danger">
+                                La contraseña debe tener minimo 8 caracteres
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" formControlName="passwordR" class="form-control form-control-lg" placeholder="Repetir contraseña">
+                            <span *ngIf="registerForm.hasError('notSame')" class="text-danger">
+                                Las contraseñas no son iguales
+                            </span>
+                        </div>
+                        <button routerLink="/user" class="btn btn-secondary btn-lg">Volver</button>
+                        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary btn-lg float-right">Aceptar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

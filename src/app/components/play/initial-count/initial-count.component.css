@@ -1,0 +1,11 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.count {
+    font-size: 200px;
+}

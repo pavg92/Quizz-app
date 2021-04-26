@@ -1,0 +1,41 @@
+<div *ngIf="loading" class="d-flex justify-content-center mt-10">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="quizz != undefined" class="container">
+    <div class="row mt-3 mb-3">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card card-title">
+                <div class="card-body text-center"> 
+                    <h2 class="title">{{ quizz.title | uppercase }}</h2>
+                    <h4><span>{{ quizz.descrip }}</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+            <div *ngFor="let question of quizz.listQuestion"  class="card mb-3">
+                <div class="card-body text-center">
+                    <p class="title question-title">{{ question.title }}</p>
+                    <div class="row">
+                        <div class="col-3 offset-2">
+                            <p><span class="badge badge-dark">{{ question.seg }}s</span></p>
+                        </div>
+                        <div class="col-6">
+                            <p><span class="badge badge-dark">{{ question.points }}pts</span></p>
+                        </div>
+                    </div>
+                    <ul class="list-group text-center">
+                        <div *ngFor="let answer of question.listAnswer">
+                            <li [ngClass]="{'correct': answer.isCorrect}" class="list-group-item title">
+                                {{ answer.title }}
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <button routerLink="/dashboard" style="width: 100%;" class="btn-prin mb-3">VOLVER</button>
+        </div>
+    </div>
+</div>
+

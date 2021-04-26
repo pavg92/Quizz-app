@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <div *ngIf="loading" class="d-flex justify-content-center mt-10">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="!loading" class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center title">Recuperar contraseña</h2>
+                    <form [formGroup]="recoverForm" (ngSubmit)="recover()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="user" class="form-control form-control-lg" placeholder="Ingresa tu correo">
+                            <span *ngIf="recoverForm.get('user')?.hasError('required') && recoverForm.get('user')?.touched" class="text-danger">
+                                El correo es requerido
+                            </span>
+                            <span *ngIf="recoverForm.get('user')?.hasError('email') && recoverForm.get('user')?.touched" class="text-danger">
+                                Correo invalido
+                            </span>
+                        </div>
+                        <button routerLink="/user" class="btn btn-secondary btn-lg">Volver</button>
+                        <button [disabled]="recoverForm.invalid" type="submit" class="btn btn-primary btn-lg float-right">Aceptar</button>
+                    </form>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

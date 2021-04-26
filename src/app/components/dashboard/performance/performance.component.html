@@ -1,0 +1,56 @@
+<div *ngIf="loading" class="d-flex justify-content-center mt-3">
+    <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!loading" class="container">
+    <div class="d-flex justify-content-center mt-3">
+        <div class="card card-title">
+            <div class="card-body">
+                <h2 class="title">RESPUESTAS</h2>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="listAnswerPart.length > 0" class="row mt-3">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Participante</th>
+                                <th>Fecha</th>
+                                <th>Puntos</th>
+                                <th style="width: 20%;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let answer of listAnswerPart">
+                                <td>{{ answer.namePart }}</td>
+                                <td>{{ answer.date.toDate() | date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ answer.totalPoints }}</td>
+                                <td>
+                                    <i [routerLink]="['/dashboard/user-answer-admin',answer.id]" class="fas fa-search"></i>
+                                    <i (click)="deleteAnswersPart(answer.id)" class="fas fa-trash"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="listAnswerPart.length == 0" class="row mt-3">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="title">No hay datos para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-lg-8 offset-lg-2">
+            <button style="width: 100%;" routerLink="/dashboard" class="btn-prin">VOLVER</button>
+        </div>
+    </div>
+</div>
