@@ -45,15 +45,19 @@ export class QuizzListComponent implements OnInit, OnDestroy {
   getQuizz(uid: string){
     this.loading = true;
     this.subscribeQuizz = this.quizzServ.getQuizzByUserId(uid).subscribe(data => {
+      this.loading = false;
       this.quizzArray = [];
       data.forEach((element:any) => {
         this.quizzArray.push({
           id: element.payload.doc.id,
           ...element.payload.doc.data()
         });
-        this.loading = false;
+        
         //console.log(this.quizzArray)
       });
+    },error => {
+      this.loading = false;
+      console.log(error);
     });
   }
 
